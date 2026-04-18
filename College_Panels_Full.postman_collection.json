@@ -1,0 +1,881 @@
+{
+  "info": {
+    "name": "College Panels API",
+    "description": "Complete API collection with environment for College Panels backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api",
+      "type": "default"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "collegeCode",
+      "value": "ABCPOLY",
+      "type": "default"
+    },
+    {
+      "key": "collegeId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "branchId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "roleId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "staffId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "studentId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "noticeId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "eventId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "timetableId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "notificationId",
+      "value": "",
+      "type": "default"
+    }
+  ],
+  "item": [
+    {
+      "name": "Super Admin",
+      "item": [
+        {
+          "name": "1. Register",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/super-admin/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin Name\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/super-admin/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "3. Get Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/super-admin/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "4. Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/super-admin/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "name", "value": "Updated Name" },
+                { "key": "phone", "value": "9876543210" },
+                { "key": "profileImage", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "5. Change Password",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/super-admin/change-password",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "6. Get Dashboard",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/super-admin/dashboard",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "7. Get College Stats (SuperAdmin)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/super-admin/colleges/{{collegeId}}/stats",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Colleges",
+      "item": [
+        {
+          "name": "1. Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/colleges/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"college@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/colleges/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/colleges/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "collegeName", "value": "ABC Polytechnic" },
+                { "key": "collegeShortName", "value": "ABC" },
+                { "key": "address", "value": "123 Main Road" },
+                { "key": "city", "value": "Delhi" },
+                { "key": "state", "value": "Delhi" },
+                { "key": "pincode", "value": "110001" },
+                { "key": "phone", "value": "011-12345678" },
+                { "key": "email", "value": "contact@abc.edu" },
+                { "key": "website", "value": "https://abc.edu" },
+                { "key": "themeColorPrimary", "value": "#1976d2" },
+                { "key": "themeColorSecondary", "value": "#ffffff" },
+                { "key": "appName", "value": "ABC College App" },
+                { "key": "logo", "type": "file", "src": "" },
+                { "key": "coverImage", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. Change Password",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/colleges/change-password",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Get Dashboard",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/colleges/dashboard",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "6. Add College (SuperAdmin)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/colleges",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "collegeName", "value": "ABC Polytechnic" },
+                { "key": "collegeShortName", "value": "ABC" },
+                { "key": "collegeCode", "value": "ABCPOLY" },
+                { "key": "type", "value": "Polytechnic" },
+                { "key": "affiliation", "value": "AICTE" },
+                { "key": "establishmentYear", "value": "2000" },
+                { "key": "address", "value": "123 Main Road" },
+                { "key": "city", "value": "Delhi" },
+                { "key": "state", "value": "Delhi" },
+                { "key": "pincode", "value": "110001" },
+                { "key": "phone", "value": "011-12345678" },
+                { "key": "email", "value": "contact@abc.edu" },
+                { "key": "website", "value": "https://abc.edu" },
+                { "key": "loginEmail", "value": "college@example.com" },
+                { "key": "loginPassword", "value": "password123" },
+                { "key": "logo", "type": "file", "src": "" },
+                { "key": "coverImage", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "7. Get All Colleges (SuperAdmin)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/colleges?page=1&limit=20",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "8. Get College by ID (SuperAdmin)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/colleges/:collegeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "9. Update College (SuperAdmin)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/colleges/:collegeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "collegeName", "value": "Updated College Name" },
+                { "key": "address", "value": "New Address" },
+                { "key": "city", "value": "Mumbai" },
+                { "key": "logo", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "10. Delete College (SuperAdmin)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/colleges/:collegeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "11. Toggle College Status (SuperAdmin)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/colleges/:collegeId/toggle-status",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Branches",
+      "item": [
+        {
+          "name": "1. Add Branch",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/branches",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchName\": \"Computer Science\",\n  \"branchCode\": \"CS\",\n  \"totalSeats\": \"60\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get All Branches",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/branches",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Get Branch by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/branches/:branchId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "4. Update Branch",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/branches/:branchId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchName\": \"Computer Science Engineering\",\n  \"branchCode\": \"CSE\",\n  \"totalSeats\": \"120\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Delete Branch",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/branches/:branchId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "1. Add Role",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleName\": \"HOD\",\n  \"permissions\": [\"manage_students\", \"view_students\", \"manage_notices\", \"view_notices\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get All Roles",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Get All Permissions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/permissions",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "4. Update Role",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/roles/:roleId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleName\": \"Head of Department\",\n  \"permissions\": [\"manage_students\", \"view_students\", \"manage_notices\", \"view_notices\", \"manage_timetable\", \"view_timetable\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Delete Role",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Staff",
+      "item": [
+        {
+          "name": "1. Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/staff/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/staff/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/staff/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "name", "value": "Updated Staff Name" },
+                { "key": "mobile", "value": "9876543210" },
+                { "key": "personalDetails[fatherName]", "value": "John Doe" },
+                { "key": "personalDetails[dateOfBirth]", "value": "1990-01-01" },
+                { "key": "profilePic", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. Change Password",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/staff/change-password",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Add Staff",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/staff",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Staff\",\n  \"email\": \"staff@example.com\",\n  \"mobile\": \"9876543210\",\n  \"password\": \"password123\",\n  \"role\": \"{{roleId}}\",\n  \"branch\": \"{{branchId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "6. Get All Staff",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/staff?page=1&limit=20",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "7. Get Staff by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/staff/:staffId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "8. Update Staff",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/staff/:staffId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\",\n  \"mobile\": \"9876543210\",\n  \"role\": \"{{roleId}}\",\n  \"branch\": \"{{branchId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "9. Delete Staff",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/staff/:staffId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "10. Toggle Staff Status",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/staff/:staffId/toggle-status",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "1. Verify College (Public)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students/verify-college?code={{collegeCode}}"
+          }
+        },
+        {
+          "name": "2. Get Branches by College Code (Public)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students/branches?code={{collegeCode}}"
+          }
+        },
+        {
+          "name": "3. Register (Public)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/students/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Student\",\n  \"email\": \"student@example.com\",\n  \"mobile\": \"9876543210\",\n  \"password\": \"password123\",\n  \"collegeCode\": \"{{collegeCode}}\",\n  \"branchId\": \"{{branchId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "4. Login (Public)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/students/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Get Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "6. Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/students/profile",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "name", "value": "Updated Student Name" },
+                { "key": "mobile", "value": "9876543210" },
+                { "key": "personalDetails[fatherName]", "value": "Father Name" },
+                { "key": "personalDetails[address]", "value": "Address here" },
+                { "key": "academicDetails[12thPercentage]", "value": "85" },
+                { "key": "academicDetails[10thPercentage]", "value": "90" },
+                { "key": "profilePic", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "7. Change Password",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/students/change-password",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "8. Resubmit (After Disapproval)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/students/resubmit",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\",\n  \"mobile\": \"9876543210\",\n  \"branchId\": \"{{branchId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "9. Get Branch Students (Staff - HOD)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students/branch?status=pending",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "10. Approve Student (Staff)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/students/:studentId/approve",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "11. Disapprove Student (Staff)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/students/:studentId/disapprove",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Documents not verified\"\n}"
+            }
+          }
+        },
+        {
+          "name": "12. Delete Student (Staff)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/students/:studentId/delete",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "13. Get All Students (College)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students?page=1&limit=20&status=pending&branchId={{branchId}}",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "14. Get Student by ID (College)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/students/:studentId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "15. Delete Student (College)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/students/:studentId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Timetable",
+      "item": [
+        {
+          "name": "1. Upload Timetable (Staff)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/timetable",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "CS Final Year Timetable" },
+                { "key": "file", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. Get Timetable (Staff/Student)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/timetable",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Delete Timetable (Staff)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/timetable/:timetableId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Calendar",
+      "item": [
+        {
+          "name": "1. Add Event (Staff)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calendar",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Exam Notice\",\n  \"description\": \"Final exams will start from Monday\",\n  \"eventDate\": \"2026-05-01\",\n  \"endDate\": \"2026-05-10\",\n  \"eventType\": \"exam\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get All Events (Staff/Student)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calendar?month=5&year=2026",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Update Event (Staff)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/calendar/:eventId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Exam Notice\",\n  \"description\": \"Exams postponed\",\n  \"eventDate\": \"2026-05-05\",\n  \"eventType\": \"exam\"\n}"
+            }
+          }
+        },
+        {
+          "name": "4. Delete Event (Staff)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/calendar/:eventId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notices",
+      "item": [
+        {
+          "name": "1. Add Notice (College/Staff)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notices",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "Important Notice" },
+                { "key": "content", "value": "This is an important notice for all students" },
+                { "key": "branchId", "value": "{{branchId}}" },
+                { "key": "images", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. Get All Notices",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notices?page=1&limit=20",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Get Notice by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notices/:noticeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "4. Update Notice",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/notices/:noticeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "Updated Notice Title" },
+                { "key": "content", "value": "Updated content" },
+                { "key": "images", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "5. Delete Notice",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notices/:noticeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "6. Remove Notice Image",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notices/:noticeId/image",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageUrl\": \"/uploads/imagefilename.jpg\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "1. Save FCM Token",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/notifications/fcm-token",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"your_fcm_token_here\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Get Notifications",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notifications?page=1&limit=20",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "3. Mark All Read",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/notifications/read-all",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "4. Clear All Notifications",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notifications/clear-all",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "5. Mark Single Notification Read",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/notifications/:notificationId/read",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "6. Delete Notification",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notifications/:notificationId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    }
+  ]
+}
