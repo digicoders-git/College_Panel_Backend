@@ -5,10 +5,12 @@ const PERMISSIONS = [
   "manage_notices",
   "manage_timetable",
   "manage_calendar",
+  "manage_resources",
   "view_notices",
   "view_timetable",
   "view_calendar",
   "view_students",
+  "view_resources",
 ];
 
 const roleSchema = new mongoose.Schema(

@@ -15,6 +15,7 @@ const timetableRoutes = require("./src/routes/timetable.routes");
 const calendarRoutes = require("./src/routes/calendar.routes");
 const noticeRoutes = require("./src/routes/notice.routes");
 const notificationRoutes = require("./src/routes/notification.routes");
+const resourceRoutes = require("./src/routes/resource.routes");
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use("/api/timetable", timetableRoutes);
 app.use("/api/calendar", calendarRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/resources", resourceRoutes);
 
 // Global error handler
 app.use(errorHandler);
