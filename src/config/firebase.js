@@ -7,23 +7,33 @@ let firebaseInitialized = false;
 const initFirebase = () => {
   if (firebaseInitialized) return;
 
-  const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+  let serviceAccount;
 
-  if (!serviceAccountPath || !fs.existsSync(path.resolve(serviceAccountPath))) {
-    console.warn("Firebase: service account file not found, push notifications disabled");
-    return;
+  // Option 1: JSON string directly in env variable (production/Render/Railway)
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+    try {
+      serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+    } catch {
+      console.warn("Firebase: FIREBASE_SERVICE_ACCOUNT_JSON is invalid JSON");
+      return;
+    }
   }
-
-  const serviceAccount = require(path.resolve(serviceAccountPath));
-  const messagingSenderId = process.env.FIREBASE_MESSAGING_SENDER_ID;
+  // Option 2: File path (local development)
+  else {
+    const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+    if (!serviceAccountPath || !fs.existsSync(path.resolve(serviceAccountPath))) {
+      console.warn("Firebase: service account file not found, push notifications disabled");
+      return;
+    }
+    serviceAccount = require(path.resolve(serviceAccountPath));
+  }
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    messagingSenderId,
   });
 
   firebaseInitialized = true;
-  console.log("Firebase initialized with web push support");
+  console.log("Firebase initialized");
 };
 
 const sendPushNotification = async ({ tokens, title, body, data = {} }) => {
