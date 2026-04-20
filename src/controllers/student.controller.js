@@ -55,6 +55,7 @@ const register = asyncHandler(async (req, res) => {
     college: college._id,
     branch: branch._id,
     status: "pending",
+    ...(req.body.fcmToken && { fcmToken: req.body.fcmToken }),
   });
 
   // Notify college admin + branch HOD staff
