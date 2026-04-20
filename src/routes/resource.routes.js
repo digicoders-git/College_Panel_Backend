@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { addCategory, getCategories, deleteCategory, addResource, getResources, deleteResource } = require("../controllers/resource.controller");
 const { protect, collegeOnly, hasPermission } = require("../middlewares/auth");
-const { upload } = require("../middlewares/upload");
+const upload = require("../middlewares/upload");
 
 // college or staff with manage_resources
 const collegeOrManage = (req, res, next) => {
